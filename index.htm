@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Effet de Neige</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background-color: #0e1e2a; /* Couleur de fond pour donner un effet hiver */
+    }
+    
+    /* Styles de la neige */
+    .snowflake {
+      position: absolute;
+      top: -10px;
+      color: white;
+      font-size: 24px;
+      user-select: none;
+      pointer-events: none;
+      animation: fall linear infinite;
+    }
+    
+    /* Animation de chute de neige */
+    @keyframes fall {
+      0% {
+        transform: translateY(0) rotate(0deg);
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1 style="text-align:center; color: white; padding-top: 50px;">Bienvenue sur la page de neige!</h1>
+
+  <!-- Conteneur pour l'effet de neige -->
+  <div id="snowflakes"></div>
+
+  <script>
+    // Générer des flocons de neige
+    function createSnowflakes() {
+      let snowflakesContainer = document.getElementById('snowflakes');
+      let numSnowflakes = 100; // Nombre de flocons de neige
+
+      for (let i = 0; i < numSnowflakes; i++) {
+        let snowflake = document.createElement('div');
+        snowflake.classList.add('snowflake');
+        snowflake.textContent = '❄'; // Utilisation d'un symbole Unicode pour le flocon
+
+        // Positionnement aléatoire des flocons
+        snowflake.style.left = `${Math.random() * 100}vw`;
+        snowflake.style.animationDuration = `${Math.random() * 5 + 5}s`; // Durée aléatoire de la chute
+        snowflake.style.animationDelay = `${Math.random() * 5}s`; // Début aléatoire de la chute
+
+        // Ajouter le flocon au conteneur
+        snowflakesContainer.appendChild(snowflake);
+      }
+    }
+
+    // Lancer la fonction pour créer les flocons
+    createSnowflakes();
+  </script>
+
+</body>
+</html>
